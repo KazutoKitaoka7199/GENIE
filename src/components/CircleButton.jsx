@@ -18,7 +18,7 @@ CircleButton.propTypes = {
 
 CircleButton.defaultProps = {
   style: null,
-}
+};
 
 const styles = StyleSheet.create({
   circleButton: {
