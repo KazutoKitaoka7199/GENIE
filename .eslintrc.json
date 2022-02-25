@@ -25,6 +25,14 @@
                 "namedComponents": "function-declaration"
             }
         ],
-        "indent": "off"
+        "indent": "off",
+        "react/prop-types": [
+            "error",
+            {
+                "ignore": [
+                    "navigation"
+                ]
+            }
+        ]
     }
 }
