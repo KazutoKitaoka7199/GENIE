@@ -14,7 +14,12 @@ export default function LoginScreen(props) {
         <TextInput style={styles.input} value="Password" />
         <Button
           label="Submit"
-          onPress={() => { navigation.navigate('MemoList'); }}
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'MemoList' }],
+            });
+          }}
         />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registerd?</Text>
