@@ -19,7 +19,12 @@ export default function SignUpScreen(props) {
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registrd?</Text>
           <TouchableOpacity>
-            <Text style={styles.footerLink}>Log In.</Text>
+            <Text
+              style={styles.footerLink}
+              onPress={() => { navigation.navigate('Login'); }}
+            >
+              Log In.
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
