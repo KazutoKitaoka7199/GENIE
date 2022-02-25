@@ -12,7 +12,8 @@ export default function LoginScreen() {
         <TextInput style={styles.input} value="Email Address" />
         <TextInput style={styles.input} value="Password" />
         <Button
-          label="Submit" />
+          label="Submit"
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registerd?</Text>
           <TouchableOpacity>
