@@ -14,14 +14,24 @@ export default function SignUpScreen(props) {
         <TextInput style={styles.input} value="Password" />
         <Button
           label="Submit"
-          onPress={() => { navigation.navigate('MemoList'); }}
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'MemoList' }],
+            });
+          }}
         />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already registrd?</Text>
           <TouchableOpacity>
             <Text
               style={styles.footerLink}
-              onPress={() => { navigation.navigate('Login'); }}
+              onPress={() => {
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'Login' }],
+                });
+              }}
             >
               Log In.
             </Text>

@@ -26,7 +26,12 @@ export default function LoginScreen(props) {
           <TouchableOpacity>
             <Text
               style={styles.footerLink}
-              onPress={() => { navigation.navigate('SignUp'); }}
+              onPress={() => {
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'SignUp' }],
+                });
+              }}
             >
               Sign up here!
             </Text>
