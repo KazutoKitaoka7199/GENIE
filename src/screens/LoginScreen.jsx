@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native';
@@ -9,6 +9,19 @@ export default function LoginScreen(props) {
   const { navigation } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // LoginScreenがアップデートされるたびに発火のを防ぐために、[]を第二引数に追加する
+  useEffect(() => {
+    const unsubscraibe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'MemoList' }],
+        });
+      }
+    });
+    return unsubscraibe;
+  }, []);
 
   function handlePress() {
     firebase.auth().signInWithEmailAndPassword(email, password)
