@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import {
+  View, StyleSheet, Alert, Text,
+} from 'react-native';
 import firebase from 'firebase';
+import Button from '../components/Button';
 
 import MemoList from '../components/MemoList';
 import CircleButton from '../components/CircleButton';
@@ -41,6 +44,17 @@ export default function MemoListScreen(props) {
     }
     return unsubscribe;
   }, []);
+
+  if (memos.length === 0) {
+    return (
+      <View>
+        <View>
+          <Text>最初のメモを作成しよう！</Text>
+          <Button label="作成する" onPress={() => { }} />
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
