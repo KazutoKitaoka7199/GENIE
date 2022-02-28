@@ -47,10 +47,10 @@ export default function MemoListScreen(props) {
 
   if (memos.length === 0) {
     return (
-      <View>
-        <View>
-          <Text>最初のメモを作成しよう！</Text>
-          <Button label="作成する" onPress={() => { }} />
+      <View style={emptyStyles.container}>
+        <View style={emptyStyles.inner}>
+          <Text style={emptyStyles.title}>最初のメモを作成しよう！</Text>
+          <Button style={emptyStyles.button} label="作成する" onPress={() => { }} />
         </View>
       </View>
     );
@@ -71,5 +71,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f4f8',
+  },
+});
+
+const emptyStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  inner: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 18,
+    marginBottom: 24,
+  },
+  button: {
+    alignSelf: 'center',
   },
 });
