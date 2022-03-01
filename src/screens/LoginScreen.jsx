@@ -30,16 +30,13 @@ export default function LoginScreen(props) {
   function handlePress() {
     setisLoading(true);
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredentuial) => {
-        const { user } = userCredentuial;
-        console.log(user.uid);
+      .then(() => {
         navigation.reset({
           index: 0,
           routes: [{ name: 'MemoList' }],
         });
       })
       .catch((error) => {
-        console.log(error.code, error.message);
         const errorMsg = translateErrors(error.code);
         Alert.alert(errorMsg.title, errorMsg.description);
       })
