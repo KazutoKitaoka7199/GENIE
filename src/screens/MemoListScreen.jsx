@@ -8,10 +8,12 @@ import Button from '../components/Button';
 import MemoList from '../components/MemoList';
 import CircleButton from '../components/CircleButton';
 import LogOutButton from '../components/LogOutButton';
+import Loading from '../components/Loading';
 
 export default function MemoListScreen(props) {
   const { navigation } = props;
   const [memos, setMemos] = useState([]);
+  const [isLoading, setisLoaging] = useState(false);
   useEffect(() => {
     navigation.setOptions({
       // eslint-disable-next-line react/no-unstable-nested-components
@@ -24,6 +26,7 @@ export default function MemoListScreen(props) {
     const { currentUser } = firebase.auth();
     let unsubscribe = () => { };
     if (currentUser) {
+      setisLoaging(true);
       const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'desc');
       unsubscribe = ref.onSnapshot((snapshot) => {
         const userMemos = [];
@@ -37,6 +40,7 @@ export default function MemoListScreen(props) {
           });
         });
         setMemos(userMemos);
+        setisLoaging(false);
       }, (error) => {
         console.log(error);
         Alert.alert('データの取得に失敗しました。');
@@ -48,9 +52,10 @@ export default function MemoListScreen(props) {
   if (memos.length === 0) {
     return (
       <View style={emptyStyles.container}>
+        <Loading isLoading={isLoading} />
         <View style={emptyStyles.inner}>
           <Text style={emptyStyles.title}>最初のメモを作成しよう！</Text>
-          <Button style={emptyStyles.button} label="作成する" onPress={() => { }} />
+          <Button style={emptyStyles.button} label="作成する" onPress={() => { navigation.navigate('MemoCreate'); }} />
         </View>
       </View>
     );
